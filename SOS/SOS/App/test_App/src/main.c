@@ -8,23 +8,22 @@
 #include "Led.h"
 
 
-
-void FirstTask(void)
+void Task1(void)
 {
 	Led_Tog(LED0);
 }
 
-void SecondTask(void)
+void Task2(void)
 {
 	Led_Tog(LED1);
 }
 
-void ThirdTask(void)
+void Task3(void)
 {
 	Led_Tog(LED2);
 }
 
-void ForthTask(void)
+void Task4(void)
 {
 	
 	Led_Tog(LED3);
@@ -39,18 +38,13 @@ int main(void)
 	Led_Init(LED2);
 	Led_Init(LED3);
 	
-	SOS_Init();	
+	Sos_Init();	
 	
-    StrTask_t Task1 = {FirstTask  ,  0 , 1000 };
-	StrTask_t Task2 = {SecondTask ,  0 , 2000 };
-	StrTask_t Task3 = {ThirdTask  ,  1 , 4000 };
-	StrTask_t Task4 = {ForthTask  ,  1 , 10000};
-	
-	 SOS_CreateTask(&Task1);
-	 SOS_CreateTask(&Task2);
-	 SOS_CreateTask(&Task3);
-	 SOS_CreateTask(&Task4);	
+	Sos_Create_Task(Task1,5,10);
+	Sos_Create_Task(Task2,4,200);
+	Sos_Create_Task(Task3,3,300);
+	Sos_Create_Task(Task4,2,400);
 		
-	SOS_Scheduler();
+	Sos_Run();
 }
 

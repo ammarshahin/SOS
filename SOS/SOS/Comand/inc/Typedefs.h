@@ -22,6 +22,7 @@ typedef signed long int sint32;
 typedef signed long long sint64;
 typedef volatile uint8* const reg_type;
 
+typedef void(*v_PtrFunc_v_type)(void);
 /************************************************************************/
 /*				      defining the NULL Pointer                         */
 /************************************************************************/
@@ -31,6 +32,9 @@ typedef volatile uint8* const reg_type;
 /************************************************************************/
 #define FALSE 	0	// defines boolean false
 #define TRUE 	1	// defines boolean true	
+
+#define  INITIAL_ZERO 0
+#define INITIAL_ONE 1
 
 /************************************************************************/
 /*               Defines for the State of the Function                  */

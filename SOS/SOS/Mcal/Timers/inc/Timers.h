@@ -54,9 +54,9 @@
 
 #define SECONDS_TO_SETCOUNTER 1000000
 
-#define TIFR_TOV0_gEnumBcm_Tx_Flag_MASK 0x01
-#define TIFR_TOV1_gEnumBcm_Tx_Flag_MASK 0x04
-#define TIFR_TOV2_gEnumBcm_Tx_Flag_MASK 0x40
+#define TIFR_TOV0_FLAG_MASK 0x01
+#define TIFR_TOV1_FLAG_MASK 0x04
+#define TIFR_TOV2_FLAG_MASK 0x40
 
 #define SWPWM_0_FREQ 40000UL 
 #define SWPWM_0_PORT MYPORTA
@@ -186,22 +186,6 @@ typedef enum {
 	T2_INTERRUPT_CMP = 0x80
 }T2_INTERRUPT;
 
-
-/************************************************************************/
-/*                       Extern Global Variables                        */
-/************************************************************************/
-
-/* Global variables for the absolute value of the prescaller */
-extern volatile uint16 Gv_PrescallerTimer0_AbsoluteValue;
-extern volatile uint16 Gv_PrescallerTimer1_AbsoluteValue;
-extern volatile uint16 Gv_PrescallerTimer2_AbsoluteValue;
-
-/* Global variables for the Mask value of the prescaler (values set as default) */
-extern volatile uint8 Gv_PrescallerTimer0_Mask;
-extern volatile uint8 Gv_PrescallerTimer1_Mask;
-extern volatile uint8 Gv_PrescallerTimer2_Mask;
-extern volatile uint8 Timer_gEnumBcm_Tx_Flag;
-extern volatile uint8 Time_Init;
 /************************************************************************/
 /*                   Timers' Functions' prototypes                      */
 /************************************************************************/
@@ -442,5 +426,11 @@ void Timers_timer2_Delay_ns(uint32 delay);
  */
 void Timers_timer2_SwPWM(uint8 dutyCycle,uint64 freq);
 
+/**
+ * Function : Timers_SetCallBack
+ * Description: This function is used to set the Call Back Function in the Timer
+ * @return void
+ */
+void Timers_SetCallBack(v_PtrFunc_v_type FuncName);
 
 #endif /* TIMERS_H_ */
