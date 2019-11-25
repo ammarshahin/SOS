@@ -30,7 +30,7 @@ volatile uint8 Gv_PrescallerTimer1_Mask = T1_PRESCALER_1024;
 volatile uint8 Gv_PrescallerTimer2_Mask = T2_PRESCALER_1;
 
 static volatile uint32 Gv_F_CPU;
-static volatile uint16  Gv_Count;
+static volatile uint32  Gv_Count;
 
 volatile uint8 Time_Init;
 

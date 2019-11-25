@@ -78,6 +78,7 @@ EnumSOSError_type Sos_Init(void)
 	uint8 index;
 	EnumSOSError_type API_State = OK_T;
 	Systick = INITIAL_ONE;
+	uint32 TimerCount_Time;
 	
 	/* Enable the Global Interrupt */
 	Interrupts_On();
@@ -86,7 +87,7 @@ EnumSOSError_type Sos_Init(void)
 	set_sleep_mode(SLEEP_MODE_IDLE);
 
 	/* Set the Systick of the Timer ISR */
-	uint32 TimerCount_Time = MILLISECONSD_TO_MICROSECONSD_FACTOR * Systick;
+	TimerCount_Time = MILLISECONSD_TO_MICROSECONSD_FACTOR * SYSTEM_TICK_MS;
 	
 	/* Set the timer Call Back Value */
 	Timers_SetCallBack(TimerSysticCallback);
