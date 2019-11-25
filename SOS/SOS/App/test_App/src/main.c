@@ -3,11 +3,27 @@
  * Author : Ammar Shahin
  */ 
 
-
+/************************************************************************/
+/*                            Includes                                  */
+/************************************************************************/
 #include "SOS.h"
 #include "Led.h"
 
 
+/************************************************************************/
+/*                            Private Macros                             */
+/************************************************************************/
+#define TASK1_PRIORITY 5
+#define TASK2_PRIORITY 4
+#define TASK3_PRIORITY 3
+
+#define TASK1_PERIODICITY 90
+#define TASK2_PERIODICITY 60
+#define TASK3_PERIODICITY 30
+
+/************************************************************************/
+/*                            SOS Tasks                                 */
+/************************************************************************/
 void Task1(void)
 {
 	Led_Tog(LED0);
@@ -23,13 +39,9 @@ void Task3(void)
 	Led_Tog(LED2);
 }
 
-void Task4(void)
-{
-	
-	Led_Tog(LED3);
-}
-
-
+/************************************************************************/
+/*                          Main Function                               */
+/************************************************************************/
 int main(void)
 {
 	/* Initializing the Led To indicate The Tasks */
@@ -40,10 +52,9 @@ int main(void)
 	
 	Sos_Init();	
 	
-	Sos_Create_Task(Task1,5,300);
-	Sos_Create_Task(Task2,4,150);
-	Sos_Create_Task(Task3,3,75);
-	Sos_Create_Task(Task4,2,30);
+	Sos_Create_Task(Task1,TASK1_PRIORITY,TASK1_PERIODICITY);
+	Sos_Create_Task(Task2,TASK2_PRIORITY,TASK2_PERIODICITY);
+	Sos_Create_Task(Task3,TASK3_PRIORITY,TASK3_PERIODICITY);
 		
 	Sos_Run();
 }

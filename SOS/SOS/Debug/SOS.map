@@ -595,7 +595,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x11cc
+.text           0x00000000     0x11a8
  *(.vectors)
  .vectors       0x00000000       0x54 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega32/avr5/crtatmega32.o
                 0x00000000                __vector_default
@@ -682,72 +682,70 @@ END GROUP
                 0x000000a8                Task2
  .text.Task3    0x000000be       0x16 App/test_App/src/main.o
                 0x000000be                Task3
- .text.Task4    0x000000d4       0x16 App/test_App/src/main.o
-                0x000000d4                Task4
- .text.main     0x000000ea       0x6a App/test_App/src/main.o
-                0x000000ea                main
+ .text.main     0x000000d4       0x5c App/test_App/src/main.o
+                0x000000d4                main
  .text.Led_Init
-                0x00000154       0x94 Ecual/led/src/Led.o
-                0x00000154                Led_Init
- .text.Led_Tog  0x000001e8       0x64 Ecual/led/src/Led.o
-                0x000001e8                Led_Tog
+                0x00000130       0x94 Ecual/led/src/Led.o
+                0x00000130                Led_Init
+ .text.Led_Tog  0x000001c4       0x64 Ecual/led/src/Led.o
+                0x000001c4                Led_Tog
  .text.TimerSysticCallback
-                0x0000024c       0x3c Firmware/SOS/src/SOS.o
+                0x00000228       0x3c Firmware/SOS/src/SOS.o
  .text.Sos_Init
-                0x00000288      0x100 Firmware/SOS/src/SOS.o
-                0x00000288                Sos_Init
+                0x00000264      0x100 Firmware/SOS/src/SOS.o
+                0x00000264                Sos_Init
  .text.Sos_Create_Task
-                0x00000388      0x128 Firmware/SOS/src/SOS.o
-                0x00000388                Sos_Create_Task
- .text.Sos_Run  0x000004b0      0x1ce Firmware/SOS/src/SOS.o
-                0x000004b0                Sos_Run
+                0x00000364      0x128 Firmware/SOS/src/SOS.o
+                0x00000364                Sos_Create_Task
+ .text.Sos_Run  0x0000048c      0x1ce Firmware/SOS/src/SOS.o
+                0x0000048c                Sos_Run
  .text.Gpio_PinDirection
-                0x0000067e      0x158 Mcal/Gpio/src/Gpio.o
-                0x0000067e                Gpio_PinDirection
+                0x0000065a      0x158 Mcal/Gpio/src/Gpio.o
+                0x0000065a                Gpio_PinDirection
  .text.Gpio_PinWrite
-                0x000007d6      0x13e Mcal/Gpio/src/Gpio.o
-                0x000007d6                Gpio_PinWrite
+                0x000007b2      0x13e Mcal/Gpio/src/Gpio.o
+                0x000007b2                Gpio_PinWrite
  .text.Gpio_PinToggle
-                0x00000914       0x96 Mcal/Gpio/src/Gpio.o
-                0x00000914                Gpio_PinToggle
+                0x000008f0       0x96 Mcal/Gpio/src/Gpio.o
+                0x000008f0                Gpio_PinToggle
  .text.Interrupts_On
-                0x000009aa       0x22 Mcal/Interrupts/src/Interrupts.o
-                0x000009aa                Interrupts_On
+                0x00000986       0x22 Mcal/Interrupts/src/Interrupts.o
+                0x00000986                Interrupts_On
  .text.Timers_Init
-                0x000009cc      0x2f0 Mcal/Timers/src/Timers.o
-                0x000009cc                Timers_Init
+                0x000009a8      0x2f0 Mcal/Timers/src/Timers.o
+                0x000009a8                Timers_Init
  .text.Timers_SetCounter
-                0x00000cbc      0x322 Mcal/Timers/src/Timers.o
-                0x00000cbc                Timers_SetCounter
+                0x00000c98      0x322 Mcal/Timers/src/Timers.o
+                0x00000c98                Timers_SetCounter
  .text.Timers_Start
-                0x00000fde       0x7c Mcal/Timers/src/Timers.o
-                0x00000fde                Timers_Start
+                0x00000fba       0x7c Mcal/Timers/src/Timers.o
+                0x00000fba                Timers_Start
  .text.Timers_SetCallBack
-                0x0000105a       0x26 Mcal/Timers/src/Timers.o
-                0x0000105a                Timers_SetCallBack
+                0x00001036       0x26 Mcal/Timers/src/Timers.o
+                0x00001036                Timers_SetCallBack
  .text.__vector_9
-                0x00001080       0x88 Mcal/Timers/src/Timers.o
-                0x00001080                __vector_9
+                0x0000105c       0x88 Mcal/Timers/src/Timers.o
+                0x0000105c                __vector_9
  .text.libgcc.mul
-                0x00001108       0x20 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_mulsi3.o)
-                0x00001108                __mulsi3
+                0x000010e4       0x20 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_mulsi3.o)
+                0x000010e4                __mulsi3
  .text.libgcc.div
-                0x00001128       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodhi4.o)
-                0x00001128                __udivmodhi4
+                0x00001104       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodhi4.o)
+                0x00001104                __udivmodhi4
  .text.libgcc.div
-                0x00001150       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
-                0x00001150                __udivmodsi4
+                0x0000112c       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+                0x0000112c                __udivmodsi4
  .text.libgcc.mul
-                0x00001194       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_muluhisi3.o)
-                0x00001194                __muluhisi3
+                0x00001170       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_muluhisi3.o)
+                0x00001170                __muluhisi3
  .text.libgcc.mul
-                0x000011aa       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
-                0x000011aa                __umulhisi3
-                0x000011c8                . = ALIGN (0x2)
+                0x00001186       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_umulhisi3.o)
+                0x00001186                __umulhisi3
+                0x000011a4                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000011c8        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x000011c8                _exit
-                0x000011c8                exit
+ .fini9         0x000011a4        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x000011a4                _exit
+                0x000011a4                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -766,11 +764,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000011c8        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x000011a4        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x000011cc                _etext = .
+                0x000011a8                _etext = .
 
-.data           0x00800060        0xe load address 0x000011cc
+.data           0x00800060        0xe load address 0x000011a8
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -813,8 +811,8 @@ END GROUP
                 0x008000a1                Gv_PrescallerTimer0_AbsoluteValue
                 0x008000a3                Gv_PrescallerTimer1_AbsoluteValue
                 0x008000a5                PROVIDE (__bss_end, .)
-                0x000011cc                __data_load_start = LOADADDR (.data)
-                0x000011da                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x000011a8                __data_load_start = LOADADDR (.data)
+                0x000011b6                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x008000a5        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
@@ -891,36 +889,36 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x2b8
+.debug_aranges  0x00000000      0x2b0
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x40 App/test_App/src/main.o
+                0x00000000       0x38 App/test_App/src/main.o
  .debug_aranges
-                0x00000040       0x38 Ecual/led/src/Led.o
+                0x00000038       0x38 Ecual/led/src/Led.o
  .debug_aranges
-                0x00000078       0x40 Firmware/SOS/src/SOS.o
+                0x00000070       0x40 Firmware/SOS/src/SOS.o
  .debug_aranges
-                0x000000b8       0x98 Mcal/Gpio/src/Gpio.o
+                0x000000b0       0x98 Mcal/Gpio/src/Gpio.o
  .debug_aranges
-                0x00000150       0x30 Mcal/Interrupts/src/Interrupts.o
+                0x00000148       0x30 Mcal/Interrupts/src/Interrupts.o
  .debug_aranges
-                0x00000180      0x120 Mcal/Timers/src/Timers.o
+                0x00000178      0x120 Mcal/Timers/src/Timers.o
  .debug_aranges
-                0x000002a0       0x18 Mcal/Timers/src/Timers_Lcfg.o
+                0x00000298       0x18 Mcal/Timers/src/Timers_Lcfg.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x1d3c
+.debug_info     0x00000000     0x1d26
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x4e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega32/avr5/crtatmega32.o
- .debug_info    0x000004e6       0xf9 App/test_App/src/main.o
- .debug_info    0x000005df      0x14b Ecual/led/src/Led.o
- .debug_info    0x0000072a      0x376 Firmware/SOS/src/SOS.o
- .debug_info    0x00000aa0      0x43a Mcal/Gpio/src/Gpio.o
- .debug_info    0x00000eda       0xe7 Mcal/Interrupts/src/Interrupts.o
- .debug_info    0x00000fc1      0xc1a Mcal/Timers/src/Timers.o
- .debug_info    0x00001bdb      0x161 Mcal/Timers/src/Timers_Lcfg.o
+ .debug_info    0x000004e6       0xe3 App/test_App/src/main.o
+ .debug_info    0x000005c9      0x14b Ecual/led/src/Led.o
+ .debug_info    0x00000714      0x376 Firmware/SOS/src/SOS.o
+ .debug_info    0x00000a8a      0x43a Mcal/Gpio/src/Gpio.o
+ .debug_info    0x00000ec4       0xe7 Mcal/Interrupts/src/Interrupts.o
+ .debug_info    0x00000fab      0xc1a Mcal/Timers/src/Timers.o
+ .debug_info    0x00001bc5      0x161 Mcal/Timers/src/Timers_Lcfg.o
 
 .debug_abbrev   0x00000000      0xb3e
  *(.debug_abbrev)
@@ -933,52 +931,52 @@ END GROUP
  .debug_abbrev  0x000008f8      0x1cc Mcal/Timers/src/Timers.o
  .debug_abbrev  0x00000ac4       0x7a Mcal/Timers/src/Timers_Lcfg.o
 
-.debug_line     0x00000000     0x1c8d
+.debug_line     0x00000000     0x1c6b
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x115 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega32/avr5/crtatmega32.o
- .debug_line    0x00000115      0x118 App/test_App/src/main.o
- .debug_line    0x0000022d      0x1ff Ecual/led/src/Led.o
- .debug_line    0x0000042c      0x39a Firmware/SOS/src/SOS.o
- .debug_line    0x000007c6      0x80b Mcal/Gpio/src/Gpio.o
- .debug_line    0x00000fd1      0x1ca Mcal/Interrupts/src/Interrupts.o
- .debug_line    0x0000119b      0xa68 Mcal/Timers/src/Timers.o
- .debug_line    0x00001c03       0x8a Mcal/Timers/src/Timers_Lcfg.o
+ .debug_line    0x00000115       0xf6 App/test_App/src/main.o
+ .debug_line    0x0000020b      0x1ff Ecual/led/src/Led.o
+ .debug_line    0x0000040a      0x39a Firmware/SOS/src/SOS.o
+ .debug_line    0x000007a4      0x80b Mcal/Gpio/src/Gpio.o
+ .debug_line    0x00000faf      0x1ca Mcal/Interrupts/src/Interrupts.o
+ .debug_line    0x00001179      0xa68 Mcal/Timers/src/Timers.o
+ .debug_line    0x00001be1       0x8a Mcal/Timers/src/Timers_Lcfg.o
 
-.debug_frame    0x00000000      0xb9c
+.debug_frame    0x00000000      0xb7c
  *(.debug_frame)
- .debug_frame   0x00000000       0xb4 App/test_App/src/main.o
- .debug_frame   0x000000b4       0x94 Ecual/led/src/Led.o
- .debug_frame   0x00000148       0xb4 Firmware/SOS/src/SOS.o
- .debug_frame   0x000001fc      0x214 Mcal/Gpio/src/Gpio.o
- .debug_frame   0x00000410       0x74 Mcal/Interrupts/src/Interrupts.o
- .debug_frame   0x00000484      0x718 Mcal/Timers/src/Timers.o
+ .debug_frame   0x00000000       0x94 App/test_App/src/main.o
+ .debug_frame   0x00000094       0x94 Ecual/led/src/Led.o
+ .debug_frame   0x00000128       0xb4 Firmware/SOS/src/SOS.o
+ .debug_frame   0x000001dc      0x214 Mcal/Gpio/src/Gpio.o
+ .debug_frame   0x000003f0       0x74 Mcal/Interrupts/src/Interrupts.o
+ .debug_frame   0x00000464      0x718 Mcal/Timers/src/Timers.o
 
-.debug_str      0x00000000     0x112e
+.debug_str      0x00000000     0x1170
  *(.debug_str)
  .debug_str     0x00000000      0x196 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.2.209/gcc/dev/atmega32/avr5/crtatmega32.o
- .debug_str     0x00000196      0x165 App/test_App/src/main.o
-                                0x199 (size before relaxing)
- .debug_str     0x000002fb       0x7c Ecual/led/src/Led.o
+ .debug_str     0x00000196      0x16c App/test_App/src/main.o
+                                0x1a0 (size before relaxing)
+ .debug_str     0x00000302       0x7c Ecual/led/src/Led.o
                                 0x1a2 (size before relaxing)
- .debug_str     0x00000377      0x26d Firmware/SOS/src/SOS.o
-                                0x3c3 (size before relaxing)
- .debug_str     0x000005e4      0x176 Mcal/Gpio/src/Gpio.o
+ .debug_str     0x0000037e      0x26d Firmware/SOS/src/SOS.o
+                                0x3d0 (size before relaxing)
+ .debug_str     0x000005eb      0x176 Mcal/Gpio/src/Gpio.o
                                 0x2cb (size before relaxing)
- .debug_str     0x0000075a       0x5f Mcal/Interrupts/src/Interrupts.o
+ .debug_str     0x00000761       0x5f Mcal/Interrupts/src/Interrupts.o
                                 0x1ae (size before relaxing)
- .debug_str     0x000007b9      0x954 Mcal/Timers/src/Timers.o
+ .debug_str     0x000007c0      0x98f Mcal/Timers/src/Timers.o
                                 0xb35 (size before relaxing)
- .debug_str     0x0000110d       0x21 Mcal/Timers/src/Timers_Lcfg.o
+ .debug_str     0x0000114f       0x21 Mcal/Timers/src/Timers_Lcfg.o
                                 0x30b (size before relaxing)
 
-.debug_loc      0x00000000     0x1904
+.debug_loc      0x00000000     0x18c9
  *(.debug_loc)
- .debug_loc     0x00000000      0x127 App/test_App/src/main.o
- .debug_loc     0x00000127      0x120 Ecual/led/src/Led.o
- .debug_loc     0x00000247      0x15a Firmware/SOS/src/SOS.o
- .debug_loc     0x000003a1      0x480 Mcal/Gpio/src/Gpio.o
- .debug_loc     0x00000821       0xbe Mcal/Interrupts/src/Interrupts.o
- .debug_loc     0x000008df     0x1025 Mcal/Timers/src/Timers.o
+ .debug_loc     0x00000000       0xec App/test_App/src/main.o
+ .debug_loc     0x000000ec      0x120 Ecual/led/src/Led.o
+ .debug_loc     0x0000020c      0x15a Firmware/SOS/src/SOS.o
+ .debug_loc     0x00000366      0x480 Mcal/Gpio/src/Gpio.o
+ .debug_loc     0x000007e6       0xbe Mcal/Interrupts/src/Interrupts.o
+ .debug_loc     0x000008a4     0x1025 Mcal/Timers/src/Timers.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -998,14 +996,14 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x240
+.debug_ranges   0x00000000      0x238
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x30 App/test_App/src/main.o
- .debug_ranges  0x00000030       0x28 Ecual/led/src/Led.o
- .debug_ranges  0x00000058       0x30 Firmware/SOS/src/SOS.o
- .debug_ranges  0x00000088       0x88 Mcal/Gpio/src/Gpio.o
- .debug_ranges  0x00000110       0x20 Mcal/Interrupts/src/Interrupts.o
- .debug_ranges  0x00000130      0x110 Mcal/Timers/src/Timers.o
+ .debug_ranges  0x00000000       0x28 App/test_App/src/main.o
+ .debug_ranges  0x00000028       0x28 Ecual/led/src/Led.o
+ .debug_ranges  0x00000050       0x30 Firmware/SOS/src/SOS.o
+ .debug_ranges  0x00000080       0x88 Mcal/Gpio/src/Gpio.o
+ .debug_ranges  0x00000108       0x20 Mcal/Interrupts/src/Interrupts.o
+ .debug_ranges  0x00000128      0x110 Mcal/Timers/src/Timers.o
 
 .debug_macro
  *(.debug_macro)

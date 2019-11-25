@@ -5,6 +5,9 @@
  *  Author: Ammar Shahin
  */ 
 
+/************************************************************************/
+/*                            Includes                                  */
+/************************************************************************/
 #include "SOS.h"
 #include "Timers.h"
 #include "Interrupts.h"
@@ -31,6 +34,7 @@ typedef struct{
 	uint16 Periodicity;
 	EnumSOSTaskState_type  TaskState;
 } StrSOSTask_type;
+
 
 /************************************************************************/
 /*                   GLOBAL STATIC(Private) VARIABLES                   */
@@ -136,12 +140,14 @@ EnumSOSError_type Sos_Init(void)
 /**
  * Function : Sos_Create_Task
  * Description: this function is to create Task and add it to the Operating System
+ * @param PtrFunc:
+					i/p: Pointer to the Task
  * @param priority: 
 					i/p: The priority of the task to be entered
+	Note : The Valid priority range [1 to SOS_MAX_PRIORITY] >> any Larger Priority will be ignored.
  * @param periodicity:
 					i/p: The periodicity of the Task
- * @param PtrFunc: 
-					i/p: Pointer to the Task
+	Note : The Stable range of the Task is in range [5 to 2000 Systicks]
  * @return EnmTMUError_t: the status of the function according to the Error handling Enum 
  */
 EnumSOSError_type Sos_Create_Task(v_PtrFunc_v_type PtrFunc,uint8 priority, uint16 periodicity)
