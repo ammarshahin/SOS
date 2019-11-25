@@ -40,10 +40,10 @@ int main(void)
 	
 	Sos_Init();	
 	
-	Sos_Create_Task(Task1,5,10);
-	Sos_Create_Task(Task2,4,200);
-	Sos_Create_Task(Task3,3,300);
-	Sos_Create_Task(Task4,2,400);
+	Sos_Create_Task(Task1,5,300);
+	Sos_Create_Task(Task2,4,150);
+	Sos_Create_Task(Task3,3,75);
+	Sos_Create_Task(Task4,2,30);
 		
 	Sos_Run();
 }

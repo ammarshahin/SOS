@@ -75,7 +75,7 @@ EnumSOSError_type Sos_Init(void)
 	{
 		StrArrOfTasks[index].Periodicity = INITIAL_ZERO;
 		StrArrOfTasks[index].Priority = INITIAL_ZERO;
-		StrArrOfTasks[index].TaskState = TaskWaiting;
+		StrArrOfTasks[index].TaskState = TaskDormint;
 		StrArrOfTasks[index].PtrTask = NULL;
 	}
 	
@@ -136,9 +136,9 @@ EnumSOSError_type Sos_Create_Task(v_PtrFunc_v_type PtrFunc,uint8 priority, uint1
 {
 	EnumSOSError_type API_State = OK_T;
 	uint8 index;
-	
+	/* Protect from NUll pointer */ 
 	if ( NULL != PtrFunc)
-	{
+	{   /* Loop Through the Array of Tasks */ 
 		for (index = INITIAL_ZERO ; index < SOS_MAX_NUMBER_OF_TASKS ; index++)
 		{
 			if (StrArrOfTasks[index].PtrTask == NULL)
@@ -180,29 +180,59 @@ EnumSOSError_type Sos_Create_Task(v_PtrFunc_v_type PtrFunc,uint8 priority, uint1
  */
 void Sos_Run(void)
 {
-	uint8 index = INITIAL_ZERO, max = INITIAL_ZERO;
-	
+	sint8 index = INITIAL_ZERO;
+	sint8 MaxPriorityIndex = INITIAL_MINUS_ONE;
+	sint8 MaxPriority = INITIAL_ZERO;
 	while(TRUE)
 	{
 		for (index = INITIAL_ZERO; index < SOS_MAX_NUMBER_OF_TASKS; index++)
 		{
-			if ( (StrArrOfTasks[index].TaskState == TaskReady) && ((Systick % StrArrOfTasks[index].Periodicity) == FALSE))
-			{
-				if( StrArrOfTasks[index].Priority > max )
+				switch( (StrArrOfTasks[index].TaskState) )
 				{
-					max = StrArrOfTasks[index].Priority;
+					case TaskDormint:
+						//Do Nothing
+						break;
+					case TaskReady:
+						if( MaxPriority < StrArrOfTasks[index].Priority )
+						{
+							MaxPriority = StrArrOfTasks[index].Priority;
+							MaxPriorityIndex = index;
+						}
+						else
+						{
+							//Do Nothing
+						}
+						break;
+					case TaskRunning:
+						StrArrOfTasks[index].TaskState = TaskWaiting;
+						index = index-1;
+						break;
+					case TaskWaiting:
+						if( (Systick % StrArrOfTasks[index].Periodicity) == FALSE)
+						{
+							StrArrOfTasks[index].TaskState = TaskReady;
+							index = index-1;
+						}
+						else
+						{
+							//Do nothing
+						}
+						break;
+					default:
+						break;
 				}
-			}
-			else
-			{
-				//Do Nothing
-			}
 		}
 		
-		if(max)
+		if(MaxPriorityIndex >= INITIAL_ZERO)
 		{
-			StrArrOfTasks[max].PtrTask();
-			StrArrOfTasks[max].TaskState = TaskWaiting;
+			StrArrOfTasks[MaxPriorityIndex].PtrTask();
+			StrArrOfTasks[MaxPriorityIndex].TaskState = TaskRunning;		
+			MaxPriorityIndex = INITIAL_MINUS_ONE;
+			MaxPriority = INITIAL_ZERO;
+		}
+		else
+		{
+			//Do Nothing
 		}
 		
 		sleep_mode();
@@ -229,6 +259,7 @@ EnumSOSError_type Sos_Delete_Task(v_PtrFunc_v_type PtrTaskFunction)
 				StrArrOfTasks[index].PtrTask     = NULL ;
 				StrArrOfTasks[index].Periodicity = FALSE;
 				StrArrOfTasks[index].Priority    = FALSE;
+				StrArrOfTasks[index].TaskState   = TaskDormint;
 				API_State = OK_T;
 				break;
 			}

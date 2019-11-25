@@ -7,7 +7,7 @@
 #ifndef SOS_CFG_H_
 #define SOS_CFG_H_
 
-/* maximum number of tasks in the system */
+/* maximum number of tasks in the system [1 to 6]*/
 #define SOS_MAX_NUMBER_OF_TASKS	6
 
 /* max priorities in the system and 0 is the highest priority */

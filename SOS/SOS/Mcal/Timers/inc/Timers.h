@@ -186,6 +186,22 @@ typedef enum {
 	T2_INTERRUPT_CMP = 0x80
 }T2_INTERRUPT;
 
+
+/************************************************************************/
+/*                       Extern Global Variables                        */
+/************************************************************************/
+
+/* Global variables for the absolute value of the prescaller */
+extern volatile uint16 Gv_PrescallerTimer0_AbsoluteValue;
+extern volatile uint16 Gv_PrescallerTimer1_AbsoluteValue;
+extern volatile uint16 Gv_PrescallerTimer2_AbsoluteValue;
+
+/* Global variables for the Mask value of the prescaler (values set as default) */
+extern volatile uint8 Gv_PrescallerTimer0_Mask;
+extern volatile uint8 Gv_PrescallerTimer1_Mask;
+extern volatile uint8 Gv_PrescallerTimer2_Mask;
+extern volatile uint8 Timer_gEnumBcm_Tx_Flag;
+extern volatile uint8 Time_Init;
 /************************************************************************/
 /*                   Timers' Functions' prototypes                      */
 /************************************************************************/

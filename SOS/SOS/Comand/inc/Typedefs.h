@@ -35,6 +35,7 @@ typedef void(*v_PtrFunc_v_type)(void);
 
 #define  INITIAL_ZERO 0
 #define INITIAL_ONE 1
+#define INITIAL_MINUS_ONE -1
 
 /************************************************************************/
 /*               Defines for the State of the Function                  */
