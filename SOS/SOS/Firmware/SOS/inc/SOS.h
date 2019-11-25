@@ -29,12 +29,6 @@ typedef enum {
 	ERROR_INVALID_PRIORITY      , 
 } EnumSOSError_type;
 
-typedef enum{
-	TaskDormint , 
-	TaskReady   ,
-	TaskRunning ,  
-	TaskWaiting ,
-} EnumSOSTaskState_type;
 
 /************************************************************************/
 /*                           APIs PROTOTYPES                            */

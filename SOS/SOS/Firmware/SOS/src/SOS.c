@@ -11,8 +11,20 @@
 #include <avr/sleep.h>
 
 /************************************************************************/
+/*                           Private Enums                              */
+/************************************************************************/
+
+typedef enum{
+	TaskDormant ,
+	TaskReady   ,
+	TaskRunning ,
+	TaskWaiting ,
+} EnumSOSTaskState_type;
+
+/************************************************************************/
 /*                           Private Structs                            */
 /************************************************************************/
+
 typedef struct{
 	v_PtrFunc_v_type PtrTask;
 	uint8  Priority;
@@ -21,12 +33,17 @@ typedef struct{
 } StrSOSTask_type;
 
 /************************************************************************/
-/*                       GLOBAL STATIC VARIABLES                        */
+/*                   GLOBAL STATIC(Private) VARIABLES                   */
 /************************************************************************/
 static StrSOSTask_type StrArrOfTasks[SOS_MAX_NUMBER_OF_TASKS];
 
-static volatile uint16 Systick = INITIAL_ONE;
+static volatile uint16 Systick;
 
+
+/************************************************************************/
+/*                         Private MACROS                               */
+/************************************************************************/
+#define MAX_SYSTICK_VALUS 65000u
 
 /************************************************************************/
 /*                           Private Functions                          */
@@ -39,9 +56,12 @@ static volatile uint16 Systick = INITIAL_ONE;
 static void TimerSysticCallback(void)
 {
 	Systick++;
-	if (Systick == 65000u)
+	if (Systick == MAX_SYSTICK_VALUS)
 	{
-		Systick = 1;
+		Systick = INITIAL_ONE;
+	}else
+	{
+		//Do Nothing
 	}
 }
 
@@ -57,6 +77,7 @@ EnumSOSError_type Sos_Init(void)
 {
 	uint8 index;
 	EnumSOSError_type API_State = OK_T;
+	Systick = INITIAL_ONE;
 	
 	/* Enable the Global Interrupt */
 	Interrupts_On();
@@ -75,7 +96,7 @@ EnumSOSError_type Sos_Init(void)
 	{
 		StrArrOfTasks[index].Periodicity = INITIAL_ZERO;
 		StrArrOfTasks[index].Priority = INITIAL_ZERO;
-		StrArrOfTasks[index].TaskState = TaskDormint;
+		StrArrOfTasks[index].TaskState = TaskDormant;
 		StrArrOfTasks[index].PtrTask = NULL;
 	}
 	
@@ -88,20 +109,13 @@ EnumSOSError_type Sos_Init(void)
 		
 		/* Set the default resolution  */
 		Timers_SetCounter(TIMER_0,TimerCount_Time);
-		
-		/* Start the Timer Used  */
-		Timers_Start(TIMER_0);
 		break;
-		
 		case TIMER_1:
 		/* Initialize the Timer Used  */
 		Timers_Init(&timer1_cfg_s);
 		
 		/* Set the default resolution  */
 		Timers_SetCounter(TIMER_1,TimerCount_Time);
-		
-		/* Start the Timer Used  */
-		Timers_Start(TIMER_1);
 		break;
 		
 		case TIMER_2:
@@ -110,9 +124,6 @@ EnumSOSError_type Sos_Init(void)
 		
 		/* Set the default resolution  */
 		Timers_SetCounter(TIMER_2, TimerCount_Time);
-		
-		/* Start the Timer Used  */
-		Timers_Start(TIMER_2);
 		break;
 		default:
 		API_State = ERROR_INVALID_INPUT;
@@ -140,21 +151,22 @@ EnumSOSError_type Sos_Create_Task(v_PtrFunc_v_type PtrFunc,uint8 priority, uint1
 	if ( NULL != PtrFunc)
 	{   /* Loop Through the Array of Tasks */ 
 		for (index = INITIAL_ZERO ; index < SOS_MAX_NUMBER_OF_TASKS ; index++)
-		{
+		{	 /* Find a task place that hasn't been Reserved by another task */ 
 			if (StrArrOfTasks[index].PtrTask == NULL)
 			{
+				/* Set the Entered Values to the Empty Space in the Task's Array*/
 				StrArrOfTasks[index].PtrTask = PtrFunc;
 				StrArrOfTasks[index].Periodicity = periodicity;
 				StrArrOfTasks[index].TaskState = TaskReady;
+				
+				/* Check If the entered priority is larger than the maximum one >> Set it to the Max */
 				if ( priority <= SOS_MAX_PRIORITY)
 				{
 					StrArrOfTasks[index].Priority = priority;
 				}
 				else
 				{
-					/* If the entered priority is larger than the maximum one >> Set it to the Max */
 					StrArrOfTasks[index].Priority = SOS_MAX_PRIORITY;
-					API_State = ERROR_INVALID_PRIORITY;
 				}
 				API_State = OK_T;
 				break;
@@ -183,13 +195,15 @@ void Sos_Run(void)
 	sint8 index = INITIAL_ZERO;
 	sint8 MaxPriorityIndex = INITIAL_MINUS_ONE;
 	sint8 MaxPriority = INITIAL_ZERO;
+	/* Start the Timer Used  */
+	Timers_Start(SOS_TIMER);
 	while(TRUE)
-	{
+	{	
 		for (index = INITIAL_ZERO; index < SOS_MAX_NUMBER_OF_TASKS; index++)
 		{
 				switch( (StrArrOfTasks[index].TaskState) )
 				{
-					case TaskDormint:
+					case TaskDormant:
 						//Do Nothing
 						break;
 					case TaskReady:
@@ -204,14 +218,16 @@ void Sos_Run(void)
 						}
 						break;
 					case TaskRunning:
+						/* Return the State of the Task to waiting */
 						StrArrOfTasks[index].TaskState = TaskWaiting;
-						index = index-1;
+						index = index - INITIAL_ONE; 
 						break;
 					case TaskWaiting:
 						if( (Systick % StrArrOfTasks[index].Periodicity) == FALSE)
 						{
+							/* Return the State of the Task to Ready */
 							StrArrOfTasks[index].TaskState = TaskReady;
-							index = index-1;
+							index = index - INITIAL_ONE;
 						}
 						else
 						{
@@ -234,7 +250,6 @@ void Sos_Run(void)
 		{
 			//Do Nothing
 		}
-		
 		sleep_mode();
 	}
 }
@@ -249,7 +264,7 @@ EnumSOSError_type Sos_Delete_Task(v_PtrFunc_v_type PtrTaskFunction)
 {
 	EnumSOSError_type API_State = OK_T;
 	uint8 index;
-
+	
 	if (PtrTaskFunction != NULL)
 	{
 		for (index = INITIAL_ZERO ; index < SOS_MAX_NUMBER_OF_TASKS ; index++)
@@ -259,7 +274,7 @@ EnumSOSError_type Sos_Delete_Task(v_PtrFunc_v_type PtrTaskFunction)
 				StrArrOfTasks[index].PtrTask     = NULL ;
 				StrArrOfTasks[index].Periodicity = FALSE;
 				StrArrOfTasks[index].Priority    = FALSE;
-				StrArrOfTasks[index].TaskState   = TaskDormint;
+				StrArrOfTasks[index].TaskState   = TaskDormant;
 				API_State = OK_T;
 				break;
 			}
